@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <div>
+        <label for="tex">Enter city: </label>
+        <input type="text" id="cityinput">
+        <button onclick="sur()">Submit</button>
+        </div>
+        <script>
+            function sur()
+        {
+            const apiKey = 'ac9b3b99257f36bfad6cd57bd6678732';
+            const city = document.getElementById("cityinput").value;
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
+            
+            .then(response => response.json())
+            
+            .then(data  =>
+            {
+                const temperature = data.main.temp;
+                const hum = data.main.humidity;
+                const wind = data.wind.speed;
+                alert(temperature +"k");
+                alert(hum );
+                alert(wind);
+            })
+            .catch(error =>
+            {
+                alert("please try again later.");
+            });
+        }
+        </script>
+        </body>
+</html>
